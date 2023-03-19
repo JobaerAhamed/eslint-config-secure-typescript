@@ -6,7 +6,8 @@
   "files": [
     "./.eslintrc.js",
     "./.prettierrc.js",
-    "README.md"
+    "README.md",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "release": "standard-version"
