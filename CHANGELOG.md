@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.5](https://github.com/JobaerAhamed/eslint-config-secure-typescript/compare/v0.1.4...v0.1.5) (2023-03-19)
+
+
+### ✨ Features
+
+* split deps ([8e6de22](https://github.com/JobaerAhamed/eslint-config-secure-typescript/commit/8e6de22c4cce8e6ad648c202004d8083005d6346))
+
 ### [0.1.4](https://github.com/JobaerAhamed/eslint-config-secure-typescript/compare/v0.1.3...v0.1.4) (2023-03-19)
 
 
