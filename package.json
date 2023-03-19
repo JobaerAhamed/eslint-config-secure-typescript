@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-secure-typescript",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "typescript eslint config",
   "main": "index.js",
   "files": [
