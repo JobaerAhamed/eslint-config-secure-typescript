@@ -1,0 +1,5 @@
+*rc.js
+*.config.js
+*.config.ts
+*-env.d.ts
+./index.js

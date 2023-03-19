@@ -1,0 +1,40 @@
+{
+  "name": "eslint-config-secure-typescript",
+  "version": "0.1.0",
+  "description": "typescript eslint config",
+  "main": "index.js",
+  "files": [
+    "./.eslintrc.js",
+    "./.prettierrc.js",
+    "README.md"
+  ],
+  "scripts": {
+    "release": "standard-version"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JobaerAhamed/eslint-config-secure-typescript.git"
+  },
+  "keywords": [
+    "eslint"
+  ],
+  "author": "jobaerahamed",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JobaerAhamed/eslint-config-secure-typescript/issues"
+  },
+  "homepage": "https://github.com/JobaerAhamed/eslint-config-secure-typescript#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "5.55.0",
+    "@typescript-eslint/parser": "5.55.0",
+    "eslint": "8.36.0",
+    "eslint-config-prettier": "8.7.0",
+    "eslint-plugin-prettier": "4.2.1",
+    "eslint-plugin-security": "1.7.1",
+    "eslint-plugin-simple-import-sort": "10.0.0",
+    "eslint-plugin-sonarjs": "0.18.0",
+    "eslint-plugin-unicorn": "46.0.0",
+    "prettier": "2.8.4",
+    "standard-version": "9.5.0"
+  }
+}
