@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/JobaerAhamed/eslint-config-secure-typescript/compare/v1.0.0...v1.1.0) (2023-03-27)
+
+
+### ✨ Features
+
+* add react support ([00c17a2](https://github.com/JobaerAhamed/eslint-config-secure-typescript/commit/00c17a27af28a559f02f09a2e03d98148a5a5766))
+
 ## [1.0.0](https://github.com/JobaerAhamed/eslint-config-secure-typescript/compare/v0.1.6...v1.0.0) (2023-03-19)
 
 ### [0.1.6](https://github.com/JobaerAhamed/eslint-config-secure-typescript/compare/v0.1.5...v0.1.6) (2023-03-19)
