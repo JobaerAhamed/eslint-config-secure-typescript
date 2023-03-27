@@ -1,5 +1,7 @@
 # Secure-Typescript
 
+![npm](https://img.shields.io/npm/dw/eslint-config-secure-typescript)
+
 Some helpful eslint config in one place
 
 ## Getting Started
@@ -32,6 +34,12 @@ Base recommended rules:
 - `plugin:unicorn/recommended`
 - `plugin:security/recommended`
 
+Additional config for React:
+
+- `plugin:react/recommended`
+- `plugin:jsx-a11y/recommended`
+- `plugin:react-hooks/recommended`
+
 Custom rules:
 
 ```
@@ -52,6 +60,14 @@ Custom rules:
     format: ['PascalCase'],
   },
 ],
+```
+
+Additional rules for React:
+
+```
+'react-hooks/rules-of-hooks': 'error',
+'react/react-in-jsx-scope': 'off',
+'react/prop-types': 'off',
 ```
 
 ## Recommendation

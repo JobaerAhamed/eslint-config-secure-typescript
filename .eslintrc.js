@@ -41,4 +41,31 @@ module.exports = {
       },
     ],
   },
+  overrides: [
+    {
+      files: ['*.tsx', '*.jsx'],
+      excludedFiles: '*.ts',
+      env: {
+        es6: true,
+        jest: true,
+        node: true,
+        browser: true,
+      },
+      settings: {
+        react: {
+          version: 'detect',
+        },
+      },
+      extends: [
+        'plugin:react/recommended',
+        'plugin:jsx-a11y/recommended',
+        'plugin:react-hooks/recommended',
+      ],
+      rules: {
+        'react-hooks/rules-of-hooks': 'error',
+        'react/react-in-jsx-scope': 'off',
+        'react/prop-types': 'off',
+      },
+    },
+  ],
 };
