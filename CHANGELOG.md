@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [1.1.1](https://github.com/JobaerAhamed/eslint-config-secure-typescript/compare/v1.1.0...v1.1.1) (2023-10-16)
 
+
 ## [1.1.0](https://github.com/JobaerAhamed/eslint-config-secure-typescript/compare/v1.0.0...v1.1.0) (2023-03-27)
 
 
