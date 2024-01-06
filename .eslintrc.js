@@ -1,34 +1,60 @@
+const importGroups = [['^\\u0000'], ['^react', '^@?\\w']];
+
+function getImportGroups() {
+  const {
+    compilerOptions: { paths },
+  } = require(`${process.cwd()}/tsconfig.json`);
+
+  const pathAliases =
+    [
+      ...new Set(
+        Object.keys(paths)?.map((key) => key.replace(/[^A-Za-z-_]+/g, '')) ||
+          [],
+      ),
+    ]?.join('|') || '';
+
+  if (pathAliases) importGroups.push([`^@(${pathAliases})(/.*|$)`]);
+  importGroups.push(['^\\.']);
+
+  return importGroups;
+}
+
 module.exports = {
   parser: '@typescript-eslint/parser',
-  plugins: ['simple-import-sort', '@typescript-eslint'],
+  plugins: ['simple-import-sort', 'sonarjs'],
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/strict-type-checked',
+    'plugin:@typescript-eslint/stylistic-type-checked',
+    'plugin:prettier/recommended',
+    'plugin:unicorn/recommended',
+    'plugin:sonarjs/recommended',
+    'plugin:security/recommended-legacy',
+  ],
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    tsconfigRootDir: __dirname,
+    project: [
+      './tsconfig.json',
+      './tsconfig.build.json',
+      './tsconfig.node.json',
+    ],
+  },
   env: {
     node: true,
     jest: true,
   },
-  ignorePatterns: [
-    '!**/*',
-    'public',
-    '.cache',
-    'node_modules',
-    '.next',
-    'build',
-    'dist',
-  ],
-  extends: [
-    'eslint:recommended',
-    'plugin:prettier/recommended',
-    'plugin:sonarjs/recommended',
-    'plugin:unicorn/recommended',
-    'plugin:security/recommended',
-  ],
   rules: {
-    'prettier/prettier': ['error', require('./.prettierrc.js')],
-    'simple-import-sort/imports': 'error',
+    'newline-before-return': 'error',
+    'prettier/prettier': ['error', require(`${process.cwd()}/.prettierrc.js`)],
     'no-console': 'error',
     'unicorn/prefer-set-has': 0,
-    'unicorn/prevent-abbreviations': ['error', { checkFilenames: false }],
     'unicorn/prefer-top-level-await': 'off',
     'unicorn/filename-case': 'off',
+    '@typescript-eslint/no-extraneous-class': 'off',
+    '@typescript-eslint/no-unnecessary-condition': 'off',
+    'security/detect-object-injection': 'off',
     'no-unused-vars': [
       'error',
       { vars: 'all', args: 'after-used', ignoreRestSiblings: false },
@@ -38,6 +64,22 @@ module.exports = {
       {
         selector: ['interface', 'typeAlias'],
         format: ['PascalCase'],
+      },
+    ],
+    'simple-import-sort/imports': [
+      'error',
+      {
+        groups: getImportGroups(),
+      },
+    ],
+    'unicorn/prevent-abbreviations': [
+      'error',
+      {
+        checkFilenames: false,
+        allowList: {
+          Param: true,
+          Params: true,
+        },
       },
     ],
   },
@@ -67,5 +109,14 @@ module.exports = {
         'react/prop-types': 'off',
       },
     },
+  ],
+  ignorePatterns: [
+    '!**/*',
+    'public',
+    '.cache',
+    'node_modules',
+    '.next',
+    'build',
+    'dist',
   ],
 };

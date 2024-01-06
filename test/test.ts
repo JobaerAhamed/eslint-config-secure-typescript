@@ -1,1 +1,3 @@
-export interface TestInterfaceName {}
+export interface TestInterfaceName {
+  test: unknown;
+}
