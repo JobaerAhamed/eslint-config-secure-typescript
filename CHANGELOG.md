@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/JobaerAhamed/eslint-config-secure-typescript/compare/v1.1.2...v2.0.0) (2024-01-06)
+
+
+### ✨ Features
+
+* typescript strict setup ([1dfc1eb](https://github.com/JobaerAhamed/eslint-config-secure-typescript/commit/1dfc1eb6c6d691fc78a34e76f235e31e397c3da7))
+
 ### [1.1.2](https://github.com/JobaerAhamed/eslint-config-secure-typescript/compare/v1.1.1...v1.1.2) (2023-10-16)
 
 ### [1.1.1](https://github.com/JobaerAhamed/eslint-config-secure-typescript/compare/v1.1.0...v1.1.1) (2023-10-16)
