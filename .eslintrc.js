@@ -21,7 +21,7 @@ function getImportGroups() {
 
 module.exports = {
   parser: '@typescript-eslint/parser',
-  plugins: ['simple-import-sort', 'sonarjs'],
+  plugins: ['simple-import-sort', 'import', 'sonarjs'],
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/strict-type-checked',
@@ -30,6 +30,7 @@ module.exports = {
     'plugin:unicorn/recommended',
     'plugin:sonarjs/recommended',
     'plugin:security/recommended-legacy',
+    'plugin:eslint-comments/recommended',
   ],
   parserOptions: {
     ecmaVersion: 'latest',
@@ -51,17 +52,12 @@ module.exports = {
     '@typescript-eslint/no-extraneous-class': 'off',
     '@typescript-eslint/no-unnecessary-condition': 'off',
     'security/detect-object-injection': 'off',
-    'no-unused-vars': [
-      'error',
-      { vars: 'all', args: 'after-used', ignoreRestSiblings: false },
-    ],
-    '@typescript-eslint/naming-convention': [
-      'error',
-      {
-        selector: ['interface', 'typeAlias'],
-        format: ['PascalCase'],
-      },
-    ],
+    'eslint-comments/no-use': 'error',
+    'eslint-comments/disable-enable-pair': 'off',
+    'simple-import-sort/exports': 'error',
+    'import/first': 'error',
+    'import/newline-after-import': 'error',
+    'import/no-duplicates': 'error',
     'simple-import-sort/imports': [
       'error',
       {
@@ -75,7 +71,21 @@ module.exports = {
         allowList: {
           Param: true,
           Params: true,
+          Req: true,
+          Res: true,
+          Args: true,
         },
+      },
+    ],
+    'no-unused-vars': [
+      'error',
+      { vars: 'all', args: 'after-used', ignoreRestSiblings: false },
+    ],
+    '@typescript-eslint/naming-convention': [
+      'error',
+      {
+        selector: ['interface', 'typeAlias'],
+        format: ['PascalCase'],
       },
     ],
   },

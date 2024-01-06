@@ -56,6 +56,7 @@ Base rules:
 - `plugin:unicorn/recommended`,
 - `plugin:sonarjs/recommended`,
 - `plugin:security/recommended-legacy`,
+- `plugin:eslint-comments/recommended`,
 
 Additional config for React:
 
