@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0-alpha.0](https://github.com/JobaerAhamed/eslint-config-secure-typescript/compare/v2.2.0...v3.0.0-alpha.0) (2024-12-31)
+
+
+### ✨ Features
+
+* import sort update ([02b8775](https://github.com/JobaerAhamed/eslint-config-secure-typescript/commit/02b8775889f450e8c55f0f40d7ea168fb8fe6811))
+* latest eslint ([6987f59](https://github.com/JobaerAhamed/eslint-config-secure-typescript/commit/6987f59986547421c982b9a41e9b6157c6cff395))
+
 ## [2.2.0](https://github.com/JobaerAhamed/eslint-config-secure-typescript/compare/v2.1.0...v2.2.0) (2024-01-06)
 
 
