@@ -1,4 +1,3 @@
-/* eslint-disable unicorn/prefer-module */
-const eslintrc = require('./.eslintrc.js');
+const eslintrc = require('./eslint.config');
 
 module.exports = eslintrc;
