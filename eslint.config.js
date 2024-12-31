@@ -11,13 +11,15 @@ const react = require('eslint-plugin-react');
 const reactHooks = require('eslint-plugin-react-hooks');
 const jsxA11y = require('eslint-plugin-jsx-a11y');
 const eslintComments = require('eslint-plugin-eslint-comments');
-const eslintPluginN = require('eslint-plugin-n');
 const jest = require('eslint-plugin-jest');
 
 const getParserProjects = require('./config/parser.config');
 const getPrettierRules = require('./config/eslint-prettier.config');
-const getImportSortRules = require('./config/import-sort.config');
+const getSortRules = require('./config/sort.config');
 const getStylisticRules = require('./config/stylistic.config');
+const getUnicornRules = require('./config/unicorn.config');
+const getSecurityRules = require('./config/security.config');
+const getCommentsRules = require('./config/comments.config');
 
 module.exports = tseslint.config(
   { files: ['**/*.{ts,js,tsx,jsx}'] },
@@ -35,13 +37,9 @@ module.exports = tseslint.config(
       globals: {
         ...globals.node,
         ...globals.jest,
-        ...globals.nodeBuiltin,
       },
     },
   },
-
-  // extra nodejs rules
-  eslintPluginN.configs['flat/recommended'],
 
   // sonarjs
   sonarjs.configs.recommended,
@@ -49,39 +47,28 @@ module.exports = tseslint.config(
   // unicorn
   unicorn.configs['flat/recommended'],
   {
-    rules: {
-      'unicorn/prevent-abbreviations': [
-        'error',
-        {
-          checkFilenames: false,
-          allowList: {
-            Param: true,
-            Params: true,
-            Req: true,
-            Res: true,
-            Args: true,
-          },
-        },
-      ],
-      'unicorn/prefer-set-has': 0,
-      'unicorn/prefer-top-level-await': 'off',
-      'unicorn/filename-case': 'off',
-      'unicorn/no-abusive-eslint-disable': 'error',
-    },
+    rules: getUnicornRules(),
   },
 
   // security
   security.configs.recommended,
   {
-    rules: {
-      'security/detect-object-injection': 'off',
-    },
+    rules: getSecurityRules(),
   },
 
   // perfectionist
-  perfectionist.configs['recommended-line-length'],
   {
-    rules: getImportSortRules(),
+    plugins: {
+      perfectionist,
+    },
+    rules: getSortRules(),
+    settings: {
+      perfectionist: {
+        type: 'alphabetical',
+        order: 'asc',
+        partitionByComment: true,
+      },
+    },
   },
 
   // stylistic
@@ -97,65 +84,8 @@ module.exports = tseslint.config(
 
   // eslint-comments
   {
-    plugins: { eslintComments },
-    rules: {
-      'eslintComments/disable-enable-pair': 'off',
-      'eslintComments/no-aggregating-enable': 'off',
-      'eslintComments/no-duplicate-disable': 'error',
-      'eslintComments/no-unlimited-disable': 'error',
-      'eslintComments/no-unused-disable': 'error',
-      'eslintComments/no-unused-enable': 'error',
-      'eslintComments/no-use': [
-        'error',
-        {
-          allow: [
-            'eslint',
-            'eslint-disable-next-line',
-            'eslint-env',
-            'globals',
-          ],
-        },
-      ],
-    },
-  },
-
-  // common rules
-  {
-    rules: {
-      'newline-before-return': 'error',
-      'no-console': 'error',
-      'no-unused-vars': 'off',
-      'no-shadow': 'off',
-      'no-invalid-this': 'off',
-      '@typescript-eslint/no-invalid-this': ['error'],
-      '@typescript-eslint/no-shadow': ['error'],
-      '@typescript-eslint/interface-name-prefix': 'off',
-      '@typescript-eslint/array-type': ['error', { default: 'array-simple' }],
-      '@typescript-eslint/no-use-before-define': 'off',
-      '@typescript-eslint/explicit-member-accessibility': 'off',
-      '@typescript-eslint/explicit-function-return-type': 'off',
-      '@typescript-eslint/no-non-null-assertion': 'off',
-      '@typescript-eslint/no-unused-vars': 'error',
-      '@typescript-eslint/explicit-module-boundary-types': 'off',
-      '@typescript-eslint/no-extraneous-class': 'off',
-      '@typescript-eslint/no-unnecessary-condition': 'off',
-      '@typescript-eslint/naming-convention': [
-        'error',
-        {
-          selector: ['interface', 'typeAlias'],
-          format: ['PascalCase'],
-        },
-      ],
-    },
-    ignores: [
-      '!**/*',
-      'public',
-      '.cache',
-      'node_modules',
-      '.next',
-      'build',
-      'dist',
-    ],
+    plugins: { 'eslint-comments': eslintComments },
+    rules: getCommentsRules(),
   },
 
   // react overrides,
@@ -173,6 +103,8 @@ module.exports = tseslint.config(
       },
     },
     plugins: {
+      react: react,
+      'jsx-a11y': jsxA11y,
       'react-hooks': reactHooks,
     },
     rules: {
@@ -201,5 +133,46 @@ module.exports = tseslint.config(
       'jest/prefer-to-have-length': 'warn',
       'jest/valid-expect': 'error',
     },
+  },
+
+  // common rules
+  {
+    rules: {
+      'newline-before-return': 'error',
+      'no-console': 'error',
+      'no-unused-vars': 'off',
+      'no-shadow': 'off',
+      'no-invalid-this': 'off',
+      '@typescript-eslint/no-invalid-this': ['error'],
+      '@typescript-eslint/no-shadow': ['error'],
+      '@typescript-eslint/array-type': ['error', { default: 'array-simple' }],
+      '@typescript-eslint/no-unused-vars': 'error',
+      '@typescript-eslint/no-extraneous-class': 'off',
+      '@typescript-eslint/no-unnecessary-condition': 'off',
+      '@typescript-eslint/prefer-nullish-coalescing': 'off',
+      '@typescript-eslint/restrict-template-expressions': [
+        'error',
+        {
+          allowBoolean: true,
+          allowNumber: true,
+        },
+      ],
+      '@typescript-eslint/naming-convention': [
+        'error',
+        {
+          selector: ['interface', 'typeAlias'],
+          format: ['PascalCase'],
+        },
+      ],
+    },
+    ignores: [
+      '!**/*',
+      'public',
+      '.cache',
+      'node_modules',
+      '.next',
+      'build',
+      'dist',
+    ],
   },
 );
